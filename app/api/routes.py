@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for
-from models import db, User, Dog, dog_schema, dogs_schema 
+from models import db, User, Dog, dog_schema, dogs_schema, login_manager
 from helpers import token_required
 from forms import AddDog
 from flask_login import current_user, login_required
@@ -17,7 +17,7 @@ def add_dog(current_user_token):
     gender = request.json['gender']
     age = request.json['age']
     breed = request.json['breed']
-    owner_id = current_user_token.token
+    owner_id = current_user_token.id
 
     dog = Dog(name,gender,age,breed,owner_id=owner_id)
 
