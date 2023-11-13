@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css">
+    <title>Snazzy Pups Grooming</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-info navbar-dark py-3 fixed-top">
+        <div class="container">
+            <a href="{{ url_for('site.home') }}" class="navbar-brand">Snazzy Pups Grooming</a>
+            <button 
+                class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navmenu"
+            ><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="{{ url_for('site.home') }}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('site.profile') }}" class="nav-link">Profile</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.signin') }}" class="nav-link">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.signup') }}" class="nav-link">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Snazzy Pups Grooming</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{{ url_for('site.home') }}">Home</a></li>
+                        <li><a href="{{ url_for('site.profile') }}">Profile</a></li>
+                        <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
+                        <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-square"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter-square"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram-square"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube-square"></i> Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="contact-section">
+            <div class="container">
+                <h3>Contact Me</h3>
+                <div class="contact-form">
+                    <form>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
