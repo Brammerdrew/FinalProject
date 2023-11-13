@@ -61,7 +61,7 @@ def update_dog(current_user_token, id):
 @token_required
 def delete_dog(current_user_token, id):
     id = request.json['id']
-    current_user_token= current_user_token.id
+    current_user_token= current_user_token.token
     dog = Dog.query.get(id)
     db.session.delete(dog)
     db.session.commit()
