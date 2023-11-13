@@ -30,7 +30,7 @@ def add_dog(current_user_token):
 @api.route('/dogs', methods = ['GET'])
 @token_required
 def get_dogs(current_user_token):
-    owner = current_user_token.token
+    owner = current_user_token.id
     dogs = Dog.query.filter_by(owner_id=owner).all()
     response = dogs_schema.dump(dogs)
     return jsonify(response)
@@ -51,7 +51,7 @@ def update_dog(current_user_token, id):
     dog.age = request.json['age']
     dog.gender = request.json['gender']
     dog.breed = request.json['breed']
-    dog.owner_id = current_user_token.token
+    dog.owner_id = current_user_token.id
 
     db.session.commit()
     response = dog_schema.dump(dog)
