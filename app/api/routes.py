@@ -60,7 +60,7 @@ def update_dog(current_user_token, id):
 @api.route('/dogs/<id>', methods = ['DELETE'])
 @token_required
 def delete_dog(current_user_token, id):
-    id = request.json['id']
+    
     current_user_token= current_user_token.token
     dog = Dog.query.get(id)
     db.session.delete(dog)
